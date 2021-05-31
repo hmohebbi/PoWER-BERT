@@ -8,7 +8,7 @@ import keras.constraints as Constraint
 import keras.initializers as Initializer
 from keras_layer_normalization import LayerNormalization
 from keras_position_wise_feed_forward import FeedForward
-from model.multi_head_attention import MultiHeadAttention
+from multi_head_attention import MultiHeadAttention
 
 
 __all__ = [
