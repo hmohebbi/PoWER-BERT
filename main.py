@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
             
             train_x, train_y = dataset_parser.get_train_data()
-            dev_x, dev_y = dataset_parser.get_dev_data()
+            dev_x, dev_y = dataset_parser.get_test_data()
 
             ## Create training object 
             PoWER_BERT = training(BERT_CONFIG_PATH=args.BERT_CONFIG_PATH, 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
         elif args.EVAL_ONLY:
 
             ## Do the evaluation on the Dev data
-            dev_x, dev_y = dataset_parser.get_dev_data()
+            dev_x, dev_y = dataset_parser.get_test_data()
 
             ## Obtain number of layers from the config file
             with open(args.BERT_CONFIG_PATH, 'r') as bc:
