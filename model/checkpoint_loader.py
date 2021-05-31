@@ -6,7 +6,7 @@ from keras import backend as K
 from keras_bert.layers import get_inputs, get_embedding, TokenEmbedding, EmbeddingSimilarity, Masked, Extract
 from keras_pos_embd import PositionEmbedding
 from keras_layer_normalization import LayerNormalization
-from model.model import get_encoders
+from model import get_encoders
 
 
 def gelu_tensorflow(x):
