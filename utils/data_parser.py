@@ -112,7 +112,7 @@ class data_parser:
         def load_data_agnews(self, path):
 
                 indices, sentiments, masks = [], [], []
-                lines = self._read_tsv(path)
+                lines = self._read_csv(path)
                 for (i, line) in enumerate(lines):
                         text_a = self.convert_to_unicode(line[0])
                         label = self.convert_to_unicode(line[1])
