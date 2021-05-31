@@ -34,8 +34,8 @@ class data_parser:
         def _read_csv(self, input_file, quotechar=None):
 
             """Reads a tab separated value file."""
-            with open(input_file,"rU") as f:
-                reader = csv.reader(f, delimiter=",", quotechar=quotechar)
+            with open(input_file) as f:
+                reader = csv.reader(f, delimiter=",")
                 lines = []
                 for idx, row in enumerate(reader):
                     label, headline, body = row
