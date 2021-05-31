@@ -111,19 +111,19 @@ class data_parser:
 
         def load_data_agnews(self, path):
 
-                indices, sentiments, masks = [], [], []
+                indices, labels, masks = [], [], []
                 lines = self._read_csv(path)
                 for (i, line) in enumerate(lines):
                         text_a = self.convert_to_unicode(line[0])
-                        label = self.convert_to_unicode(line[1])
+                        label = int(line[1])
                         ids, segments, mask = self.encode(text_a, max_len=self.SEQ_LEN)
                         indices.append(ids)
-                        sentiments.append(label)
+                        labels.append(label)
                         masks.append(mask)
-                items = list(zip(indices, masks, sentiments))
+                items = list(zip(indices, masks, labels))
                 np.random.shuffle(items)
-                indices, masks, sentiments = zip(*items)
+                indices, masks, labels = zip(*items)
                 indices = np.array(indices)
                 masks = np.array(masks)
-                return [indices, np.zeros_like(indices), masks], np.array(sentiments)
+                return [indices, np.zeros_like(indices), masks], np.array(labels)
 
