@@ -1,6 +1,6 @@
 import keras.backend as K
 import os
-from model.scaled_dot_attention import ScaledDotProductAttention
+from scaled_dot_attention import ScaledDotProductAttention
 
 if 'TF_KERAS' in os.environ and os.environ['TF_KERAS'] != '0':
     from tensorflow.python import keras
