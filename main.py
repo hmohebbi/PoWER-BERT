@@ -129,10 +129,10 @@ if __name__ == "__main__":
                                   LOGFILE_PATH=LOGFILE_PATH)
 
             ## Fine-tune the pre-trained BERT model on the downstream task
-            if FINETUNED_PATH == "":
+            if args.FINETUNED_PATH == "":
                 fine_tuned_model_path = PoWER_BERT.fine_tuning_step(LR_BERT=args.LR_BERT)
             else:
-                fine_tuned_model_path = FINETUNED_PATH
+                fine_tuned_model_path = args.FINETUNED_PATH
             
             ## Introduce the Soft-Extract layer in the fine-tuned_model and obtain the retention configuration 
             configuration_search_model_path, retention_configuration = PoWER_BERT.configuration_search_step(fine_tuned_model_path, 
