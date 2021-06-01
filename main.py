@@ -130,17 +130,22 @@ if __name__ == "__main__":
 
             ## Fine-tune the pre-trained BERT model on the downstream task
             if args.FINETUNED_PATH == "":
+                print("Starting fine-tune step:")
                 fine_tuned_model_path = PoWER_BERT.fine_tuning_step(LR_BERT=args.LR_BERT)
             else:
                 fine_tuned_model_path = args.FINETUNED_PATH
             
             ## Introduce the Soft-Extract layer in the fine-tuned_model and obtain the retention configuration 
+            print("Starting configuration search step:")
             configuration_search_model_path, retention_configuration = PoWER_BERT.configuration_search_step(fine_tuned_model_path, 
                                                                                                             LAMBDA=args.LAMBDA, 
                                                                                                             LR_BERT=args.LR_BERT, 
                                                                                                             LR_SOFT_EXTRACT=args.LR_SOFT_EXTRACT) 
+            print("retention configuration: ")
+            print(retention_configuration)
 
             ## Replace the Soft-Extract layer by Extract layer and use the retention configuration obtained in the previous step to get the final model with word-vectors eliminated
+            print("Starting retraining step:")
             PoWER_BERT.retraining_step(configuration_search_model_path, 
                                        retention_configuration, 
                                        LR_BERT=args.LR_BERT,) 
