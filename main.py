@@ -34,6 +34,10 @@ if __name__ == "__main__":
         parser.add_argument('--CHECKPOINT_PATH', 
             type=str, 
             help='Checkpoint path for training')
+        parser.add_argument('--FINETUNED_PATH', 
+            type=str, 
+            default="",
+            help='fine-tuned model path for configuration search step')
         parser.add_argument('--DATA_DIR', 
             type=str, 
             help='Dataset Directory containing train.tsv, dev.tsv and test.tsv files')
@@ -125,7 +129,10 @@ if __name__ == "__main__":
                                   LOGFILE_PATH=LOGFILE_PATH)
 
             ## Fine-tune the pre-trained BERT model on the downstream task
-            fine_tuned_model_path = PoWER_BERT.fine_tuning_step(LR_BERT=args.LR_BERT)
+            if FINETUNED_PATH == "":
+                fine_tuned_model_path = PoWER_BERT.fine_tuning_step(LR_BERT=args.LR_BERT)
+            else:
+                fine_tuned_model_path = FINETUNED_PATH
             
             ## Introduce the Soft-Extract layer in the fine-tuned_model and obtain the retention configuration 
             configuration_search_model_path, retention_configuration = PoWER_BERT.configuration_search_step(fine_tuned_model_path, 
