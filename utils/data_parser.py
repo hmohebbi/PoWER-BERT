@@ -115,7 +115,7 @@ class data_parser:
                 lines = self._read_csv(path)
                 for (i, line) in enumerate(lines):
                         text_a = self.convert_to_unicode(line[0])
-                        label = int(line[1])
+                        label = int(line[1]) - 1
                         ids, segments, mask = self.encode(text_a, max_len=self.SEQ_LEN)
                         indices.append(ids)
                         labels.append(label)
